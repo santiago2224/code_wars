@@ -3,7 +3,7 @@ const taco = {id:1, name:'chicken', price:20, about:'Yummy'}
 
 const taco1 = {id:2, name:'carne asada', price:18, about:'Tasty'}
 
-const taco2 = {id:3, name:'fish', price:30, about:'So good'}
+const taco2 = {id:3, name:'fish', price:30, about:'So good'} 
 
 
 
@@ -12,16 +12,33 @@ const tacos = [taco, taco1, taco2]
 
 
 // write a function that takes an tacoOBJ and a id
-
 // and returns a new object with name changed to "changed"
+
+const newFood = (tacoObj, id)=> {
+  let newTaco = {...tacoObj, name: 'changed', id: id}
+  console.log(newTaco);
+};
+
+newFood (taco1, 4)
 
 
 
 // write a function that takes an tacoOBJ and return some
-
 // formatted html (will be a string technically)
-
-
+// console.log (
+//   `The ${taco.name} taco has a price of
+//   ${taco.price}
+//   dollars and is menu item
+//   ${taco.id}`);
+  
+  const formatTacoHTML = (tacoObj) => {
+    const {name, price} = tacoObj 
+    return `
+     <div>
+        <h1>${name}: ${price}</h1>
+     </div>
+    `
+ } 
 
 // write a function that takes an tacoOBJ and return formatted price with
 
@@ -36,14 +53,28 @@ const tacos = [taco, taco1, taco2]
 // write a function that takes an array and logs each item in the array
 
 // hint forEach
+tacos.forEach(function (id, name, price){
+  console.log(id, name, price);
+});
 
 
 
 // use the find method to return the object with id:1
+tacos.forEach(function (id, name, price){
+  if (id === '1'){
+    return {id, name, price}
+  }else{
+    return tacos
+  }
+  console.log(id, name, price);
+});
 
 
 
 // return a new array with all prices greater than 19
+tacos.filter(function(price){
+  return price >= 19;
+});
 
 
 
