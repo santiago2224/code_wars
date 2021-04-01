@@ -53,34 +53,57 @@ newFood (taco1, 4)
 // write a function that takes an array and logs each item in the array
 
 // hint forEach
-tacos.forEach(function (id, name, price){
-  console.log(id, name, price);
-});
+    const logTacoArr = (tacoArr) => {
+      return tacoArr.forEach((tacoItem)=>{
+        const {id, name, price, about} = tacoItem
+        nameCap = name.split("").map((name)=>name.charAt(0).toUpperCase() + name.slice(1)).join(" ")
+        console.log(`${id}) ${nameCap} [$${price}] ~${about}~`)
+      })
+    }
+
+    logTacoArr(tacos)
 
 
 
 // use the find method to return the object with id:1
-tacos.forEach(function (id, name, price){
-  if (id === '1'){
-    return {id, name, price}
-  }else{
-    return tacos
-  }
-  console.log(id, name, price);
-});
+    const getTaco = (tacoArr) => {
+      return tacoArr.find(tacoItem => tacoItem.id === 1)
+    }
+
+    let foundTaco = getTaco(tacos)
+    console.log(foundTaco)
+
 
 
 
 // return a new array with all prices greater than 19
-tacos.filter(function(price){
-  return price >= 19;
-});
+const expensiveTacos = (tacoArr) => {
+  return tacoArr.filter((tacoItem)=>{
+    const {id, name, price, about} = tacoItem
+    if(price > 19)
+      return tacoItem
+  })
+}
+
+let expensiveTacoArr = expensiveTacos(tacos)
+console.log(expensiveTacoArr)
 
 
 
 // return a new array with a 'about' key where it is a combo of
 
 // name price and about
+const aboutKey = (tacoArr) => {
+  return tacoArr.map((tacoItem)=>{
+    const {id, name, price, about} = tacoItem
+    nameCap = name.split("").map((name)=>name.charAt(0).toUpperCase() + name.slice(1)).join(" ") 
+    aboutCap = about.split("").map((about)=>about.charAt(0).toUpperCase() + about. slice(1)).join(" ")
+    return{...tacoItem, about: `~${aboutCap}~ ${nameCap} Tacos only $${price}`}
+  })
+}
+
+newAboutTacos = aboutKey(tacos)
+console.log(newAboutTacos)
 
 
 
@@ -96,10 +119,35 @@ tacos.filter(function(price){
 // READ (array of obj to array of html) 
 
 // Update (update a taco) 
+const updateTaco = (tacoItem, newName) => {
+  const {id, name, price, about} = tacoItem
 
-// Remove (delete a taco) 
+  return{...tacoItem, name: `${newName}`}
+}
 
-// Create (add a taco) 
+let updatedTaco = updateTaco(taco1, "beef")
+console.log(updatedTaco)
+
+// Remove (delete a taco)
+const deleteTaco = (tacoArr) => {
+  return tacoArr.filter((tacoItem)=>
+    tacoItem.name !== "chicken"
+  )
+}
+
+let deletedTacoArr = deleteTaco(tacos)
+console.log(deletedTacoArr)
+
+
+// Create (add a taco)
+const addNewTaco = (tacoArr) => {
+  tacoArr.push({id: 4, name: "tripa", price: 10, about: "intestines"})
+  return tacoArr
+}
+
+let addNewTacoArr = addNewTaco(tacos)
+console.log(addNewTacoArr)
+
 
 
 
